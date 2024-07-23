@@ -23,7 +23,7 @@ async def apresentacao(ctx:commands.Context):
 
 @bot.event
 async def on_message(ctx:commands.Context):
-    print(message)
+    pass
     
 
 
