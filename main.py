@@ -27,4 +27,4 @@ async def on_message(ctx:commands.Context):
     
 
 
-bot.run("MTI2NTM1MzA2ODU1NjQ1NTkzNw.GlxoBg.iOqLZEByLYPTrUHGjzJBfs1Nkf_24pnsSoG-08")
+bot.run("")
