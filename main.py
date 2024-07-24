@@ -3,17 +3,26 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from dotenv import load_dotenv
+import yt_dlp
 
 load_dotenv(".env")
 TOKEN: str = os.getenv("token_bot")
+FFMPeg = os.getenv("path_ffmpeg")
 
 permissoes = discord.Intents.default()
 permissoes.message_content = True
 permissoes.members = True
+permissoes.voice_states = True
 bot = commands.Bot(command_prefix="!", intents=permissoes)
+
+async def load_cogs():
+    for arquivo in os.listdir('cogs'):
+        if arquivo.endswith('.py'):
+            await bot.load_extension(f"cogs.{arquivo[:-3]}")
 
 @bot.event
 async def on_ready():
+    await load_cogs()
     print("I'm ready!")
 
 @bot.command()
@@ -36,8 +45,8 @@ async def on_message(message):
         await message.channel.send("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
     """
 
-@bot.command()
+"""@bot.command()
 async def rickroll(ctx:commands.Context):
-    await ctx.reply("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+    await ctx.reply("https://www.youtube.com/watch?v=dQw4w9WgXcQ")"""
 
 bot.run(TOKEN)
